@@ -1,0 +1,42 @@
+{
+    "name": "php-serialization/eventsauce-serializer",
+    "description": "A serializer implementation built on top of eventsauce/object-hydrator.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "serialization",
+        "eventsauce"
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhpSerialization\\EventsauceSerializer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpSerialization\\EventsauceSerializer\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "v.zanfir",
+            "email": "vadimzanfir@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "eventsauce/object-hydrator": "^0.4.2",
+        "php-serialization/serializer": "^0.3.0"
+    },
+    "require-dev": {
+        "vimeo/psalm": "^4.23",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "psalm": "./vendor/bin/psalm --no-cache",
+        "test": "./vendor/bin/phpunit --do-not-cache",
+        "all": "./vendor/bin/phpunit --do-not-cache && ./vendor/bin/psalm --no-cache"
+    }
+}
