@@ -14,7 +14,7 @@ final class ObjectCodeGeneratorDefinitionCache implements DefinitionCache
     /**
      * @var array<class-string, ObjectMapper>
      */
-    private static ?array $mappers = [];
+    private static array $mappers = [];
 
     /**
      * @param non-empty-string $namespace
