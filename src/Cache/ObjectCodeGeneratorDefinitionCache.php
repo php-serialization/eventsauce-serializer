@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpSerialization\EventsauceSerializer\Cache;
 
+use EventSauce\ObjectHydrator\DefinitionProvider;
 use EventSauce\ObjectHydrator\ObjectMapper;
 use EventSauce\ObjectHydrator\ObjectMapperCodeGenerator;
 
@@ -23,6 +24,7 @@ final class ObjectCodeGeneratorDefinitionCache implements DefinitionCache
     public function __construct(
         private string $namespace,
         private string $cacheDir,
+        private ?DefinitionProvider $definitionProvider = null,
     ) {
     }
 
@@ -49,7 +51,7 @@ final class ObjectCodeGeneratorDefinitionCache implements DefinitionCache
 
             $filename = $this->resolveFileName($objectFqcn);
 
-            $dumper = new ObjectMapperCodeGenerator();
+            $dumper = new ObjectMapperCodeGenerator($this->definitionProvider);
 
             if (false === file_exists($filename)) {
                 file_put_contents($filename, $dumper->dump([$class], $objectFqcn));

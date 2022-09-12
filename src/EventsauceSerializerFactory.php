@@ -27,13 +27,14 @@ final class EventsauceSerializerFactory
         ?string $namespace = null,
         ?string $cacheDir = null,
         ?DefinitionCache $definitionCache = null,
+        ?DefinitionProvider $definitionProvider = null,
     ): Serializer {
         if (null === $definitionCache) {
             if (null === $namespace || $cacheDir === null) {
                 throw new \InvalidArgumentException('You should provide DefinitionCache or namespace and cacheDir for default DefinitionCache implementation.');
             }
 
-            $definitionCache = new ObjectCodeGeneratorDefinitionCache($namespace, $cacheDir);
+            $definitionCache = new ObjectCodeGeneratorDefinitionCache($namespace, $cacheDir, $definitionProvider);
         }
 
         return new OptimizedEventsauceSerializer($definitionCache);
